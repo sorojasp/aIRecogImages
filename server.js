@@ -103,7 +103,7 @@ app.post("/recog-img", async (req, res) => {
 
 
 
-app.set("port", 3000);
+app.set("port", process.env.PORT||3000);
 
 app.listen(app.get("port"), () => {
   console.log(`listening by port ${app.get("port")}`);
