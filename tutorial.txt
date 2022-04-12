@@ -1,0 +1,14 @@
+- To activate the production mode, you have to go to package.json and set the values scripts on the next way:
+
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start":"node  ./server.js"
+},
+
+
+To activate the develop mode, you have to go to package.json and set the values scripts on the next way:
+
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start":"nodemon  ./server.js"
+},

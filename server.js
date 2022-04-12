@@ -37,11 +37,11 @@ app.use(bodyParser.json());
 
 app.post("/gray", async (req, res) => {
 
-  
+
  console.log("data", req.files.image.data)
  await  getGrayImage(req.files.image.data)
-  
-  
+
+
   res.json({
     dataRecieved: [],
     status: "ok",
@@ -51,7 +51,9 @@ app.post("/gray", async (req, res) => {
 
 
 app.post("/recog-img", async (req, res) => {
-  
+
+  try{
+
   console.log(req.files)
 
   await getGrayImage(req.files.image.data)
@@ -66,7 +68,7 @@ app.post("/recog-img", async (req, res) => {
     mimetype:req.files.image.mimetype
   }
 
-  if(!req.files){ // 
+  if(!req.files){ //
 
     return res.status(400).json({
       ok:false,
@@ -92,16 +94,25 @@ app.post("/recog-img", async (req, res) => {
 
   console.log("predictions: ", predictions)
 
-  
+
   console.log("predictions: ", Object.keys(predictions))
 
- 
-  
+
+
   res.status(200).json({
     dataRecieved: predictions,
     status: "ok",
-    method: "delete",
+    method: "post",
   });
+
+}catch(err){
+console.log(err);
+  return res.status(400).json({
+    ok:false,
+    msg:'Anything was wrong, please try again'
+  })
+
+}
 });
 
 
