@@ -52,7 +52,7 @@ app.post("/gray", async (req, res) => {
 
 app.post("/recog-img", async (req, res) => {
   
-  
+  console.log(req.files)
 
   await getGrayImage(req.files.image.data)
   console.log(req.files.image)
@@ -88,11 +88,16 @@ app.post("/recog-img", async (req, res) => {
       ok:false,
       msg:'Anything was wrong, please try again'
     })
-  })
+  });
+
+  console.log("predictions: ", predictions)
+
+  
+  console.log("predictions: ", Object.keys(predictions))
 
  
   
-  res.json({
+  res.status(200).json({
     dataRecieved: predictions,
     status: "ok",
     method: "delete",
